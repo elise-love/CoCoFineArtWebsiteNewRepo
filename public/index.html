@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoCo敲一敲藝術教室 | Fine Art Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <!-- React 掛載點 -->
+    <div id="root"></div>
+
+    <!-- 原有的靜態 HTML 結構，供非 React 邏輯或初始載入時顯示 -->
+    <!-- Intro Animation Container -->
+    <div id="intro-animation" class="intro-animation">
+        <h1 id="intro-text" class="intro-text">CoCo</h1>
+    </div>
+
+    <!-- Main Content (Hidden initially) -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="logo">CoCo敲一敲藝術教室</h1>
+                    <nav class="desktop-nav">
+                        <ul>
+                            <li><a href="#login">學生/家長登入</a></li>
+                            <li><a href="#overview">總覽</a></li>
+                            <li><a href="#gallery">畫室作品</a></li>
+                            <li><a href="#courses">課程</a></li>
+                            <li><a href="#about">關於</a></li>
+                            <li><a href="#contact">聯絡</a></li>
+                        </ul>
+                    </nav>
+                    <button class="mobile-menu-button" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+            <div class="mobile-menu hidden">
+                <nav>
+                    <ul>
+                        <li><a href="#login">學生/家長登入</a></li>
+                        <li><a href="#overview">總覽</a></li>
+                        <li><a href="#gallery">畫室作品</a></li>
+                        <li><a href="#courses">課程</a></li>
+                        <li><a href="#about">關於</a></li>
+                        <li><a href="#contact">聯絡</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Studio Philosophy Section -->
+        <section id="philosophy" class="section philosophy">
+            <div class="container">
+                <h2 class="section-title"><span class="crayon-underline blue">畫室理念</span></h2>
+                <div class="philosophy-content">
+                    <p>在CoCo敲一敲藝術教室，我們相信每個孩子都擁有無限的創造力和想像力。我們的教學理念是通過藝術創作，激發孩子們的創意思維，培養他們的觀察力、專注力和表達能力。</p>
+                    <p>我們注重個性化教學，根據每個孩子的特點和興趣，設計適合他們的藝術課程，讓他們在輕鬆愉快的環境中學習和成長。我們希望通過藝術教育，幫助孩子們建立自信，發現自我，並培養終身學習的熱情。</p>
+                </div>
+                <div class="decorative-doodle">
+                    <svg width="200" height="30" viewBox="0 0 200 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20,15 Q50,5 100,15 T180,15" stroke="#966F33" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.5"></path>
+                        <path d="M30,20 Q60,30 110,20 T170,20" stroke="#966F33" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.3"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="paint-splatter top-left" style="--rotation: 15deg;"></div>
+            <div class="paint-splatter bottom-right yellow" style="--rotation: -20deg;"></div>
+        </section>
+
+        <!-- Studio Gallery Section -->
+        <section id="studio-gallery" class="section studio-gallery">
+            <div class="container">
+                <h2 class="section-title"><span class="crayon-underline yellow">畫室環境</span></h2>
+                <div class="gallery-container">
+                    <button class="gallery-nav prev" aria-label="Previous image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <div class="gallery-scroll">
+                        <div class="gallery-item">
+                            <div class="gallery-item">
+                                <img src="images/studio1.jpg" alt="畫室環境 1" />
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-item">
+                                <img src="images/studio2.jpg" alt="畫室環境 2" />
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-item">
+                                <img src="images/studio3.jpg" alt="畫室環境 3" />
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-item">
+                                <img src="images/studio4.jpg" alt="畫室環境 4" />
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-item">
+                                <img src="images/studio5.jpg" alt="畫室環境 5" />
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-item">
+                                <img src="images/studio6.jpg" alt="畫室環境 6" />
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-item">
+                                <img src="images/studio7.jpg" alt="畫室環境 7" />
+                            </div>
+                        </div>
+                    </div>
+                    <button class="gallery-nav next" aria-label="Next image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="paint-splatter top-right pink" style="--rotation: -10deg;"></div>
+            <div class="paint-splatter bottom-left green" style="--rotation: 25deg;"></div>
+        </section>
+
+        <!-- Artwork Display Section -->
+        <section id="artwork-display" class="section artwork-display">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="crayon-underline">學生作品展示</span>
+                </h2>
+
+                <div class="artwork-grid">
+
+                    <div class="artwork-item">
+                        <img src="images/art0.jpg" alt="學生作品 1" />
+                        <p class="artwork-title">作品名稱 1</p>
+                    </div>
+
+                    <div class="artwork-item">
+                        <img src="images/art1.jpg" alt="學生作品 1" />
+                        <p class="artwork-title">作品名稱 2</p>
+                    </div>
+
+                    <div class="artwork-item">
+                        <img src="images/art2.jpg" alt="學生作品 3" />
+                        <p class="artwork-title">作品名稱 3</p>
+                    </div>
+
+                    <div class="artwork-item">
+                        <img src="images/art3.jpg" alt="學生作品 4" />
+                        <p class="artwork-title">作品名稱 3</p>
+                    </div>
+
+                    <div class="artwork-item">
+                        <img src="images/art4.jpg" alt="學生作品 5" />
+                        <p class="artwork-title">作品名稱 3</p>
+                    </div>
+
+                    <div class="artwork-item">
+                        <img src="images/art5.jpg" alt="學生作品 6" />
+                        <p class="artwork-title">作品名稱 2</p>
+                    </div>
+
+                    <div class="artwork-item">
+                        <img src="images/art6.jpg" alt="學生作品 7" />
+                        <p class="artwork-title">作品名稱 3</p>
+                    </div>
+
+                    <div class="artwork-item">
+                        <img src="images/art7.jpg" alt="學生作品 8" />
+                        <p class="artwork-title">作品名稱 3</p>
+                    </div>
+
+                    <div class="artwork-item">
+                        <img src="images/art8.jpg" alt="學生作品 9" />
+                        <p class="artwork-title">作品名稱 3</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- paint-splatter 裝飾保持不變 -->
+            <div class="paint-splatter top-left yellow" style="--rotation: 15deg;"></div>
+            <div class="paint-splatter bottom-right pink" style="--rotation: -10deg;"></div>
+
+        </section>
+        <!-- Class Schedule Section -->
+        <section id="class-schedule" class="section class-schedule">
+            <div class="container">
+                <h2 class="section-title"><span class="crayon-underline green">課程時間表</span></h2>
+                <div class="schedule-grid">
+                    <!-- Schedule cards will be dynamically generated by JavaScript -->
+                </div>
+            </div>
+            <div class="paint-splatter top-left green" style="--rotation: 10deg;"></div>
+            <div class="paint-splatter bottom-right" style="--rotation: -15deg;"></div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about">
+            <div class="container">
+                <h2 class="section-title"><span class="crayon-underline blue">關於我們</span></h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-content">
+                            <h3 class="card-title">畫室簡介</h3>
+                            <div class="card-text">
+                                <p>CoCo敲一敲藝術教室成立於2010年，是一家專注於兒童和青少年藝術教育的畫室。我們的教學團隊由專業的藝術教育工作者組成，擁有豐富的教學經驗和專業的藝術背景。</p>
+                                <p>我們的教學環境寬敞明亮，設備齊全，為學生提供了一個理想的藝術創作空間。我們的課程設置豐富多樣，包括繪畫、素描、水彩、油畫、黏土創作等多種藝術形式，滿足不同年齡段學生的學習需求。</p>
+                                <p>多年來，我們的學生在各類藝術比賽中屢獲佳績，作品多次在國內外藝術展覽中展出。我們期待與更多熱愛藝術的孩子們一起，探索藝術的奧秘，發現生活的美好。</p>
+                            </div>
+                        </div>
+                        <div class="corner top-left"></div>
+                        <div class="corner bottom-right"></div>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-content">
+                            <h3 class="card-title">教學特色</h3>
+                            <ul class="feature-list">
+                                <li>小班教學，每班不超過10人，確保每位學生都能得到充分的指導和關注。</li>
+                                <li>因材施教，根據學生的年齡、興趣和能力，制定個性化的教學計劃。</li>
+                                <li>注重創意培養，鼓勵學生自由表達，發揮想像力。</li>
+                                <li>多元化教學內容，涵蓋繪畫、素描、水彩、油畫、黏土創作等多種藝術形式。</li>
+                                <li>定期舉辦作品展覽，讓學生有機會展示自己的作品，增強自信心。</li>
+                                <li>提供藝術比賽和展覽的參與機會，拓寬學生的藝術視野。</li>
+                            </ul>
+                        </div>
+                        <div class="corner top-right"></div>
+                        <div class="corner bottom-left"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="paint-splatter top-right" style="--rotation: -5deg;"></div>
+            <div class="paint-splatter bottom-left yellow" style="--rotation: 15deg;"></div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2 class="section-title"><span class="crayon-underline.yellow">聯絡我們</span></h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="card-content">
+                            <h3 class="card-title">畫室資訊</h3>
+                            <div class="info-list">
+                                <div class="info-item">
+                                    <h4>地址</h4>
+                                    <p>高雄市鼓山區華榮路240之3號</p>
+                                </div>
+                                <div class="info-item">
+                                    <h4>電話</h4>
+                                    <p>09376263689</p>
+                                </div>
+                                <div class="info-item">
+                                    <h4>電子郵件</h4>
+                                    <p>elisadiskg5@gmail.com</p>
+                                </div>
+                                <div class="info-item">
+                                    <h4>營業時間</h4>
+                                    <p>週一至週五: 15:00 - 21:00</p>
+                                    <p>週六: 09:00 - 18:00</p>
+                                    <p>週日: 09:00 - 12:00</p>
+                                </div>
+                            </div>
+                            <div class="social-media">
+                                <h4>社群媒體</h4>
+                                <div class="social-links">
+                                    <a href="#" class="social-link facebook" aria-label="Facebook">
+                                        <!-- Facebook icon SVG -->
+                                    </a>
+                                    <a href="#" class="social-link instagram" aria-label="Instagram">
+                                        <!-- Instagram icon SVG -->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="corner top-left"></div>
+                        <div class="corner bottom-right"></div>
+                    </div>
+                    <div class="contact-form">
+                        <div class="card-content">
+                            <h3 class="card-title">留下您的聯絡資訊</h3>
+                            <form id="contact-form">
+                                <div class="form-group">
+                                    <label for="name">姓名</label>
+                                    <input type="text" id="name" name="name" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">電子郵件</label>
+                                    <input type="email" id="email" name="email" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">電話</label>
+                                    <input type="tel" id="phone" name="phone" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">留言</label>
+                                    <textarea id="message" name="message" rows="4"></textarea>
+                                </div>
+                                <button type="submit" class="submit-button">
+                                    <!-- submit icon SVG -->
+                                    送出
+                                </button>
+                            </form>
+                            <div id="form-success" class="form-success hidden">
+                                <p>感謝您的留言！</p>
+                                <p>我們會盡快與您聯繫。</p>
+                            </div>
+                        </div>
+                        <div class="corner top-right"></div>
+                        <div class="corner bottom-left"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="paint-splatter top-right pink" style="--rotation: -10deg;"></div>
+            <div class="paint-splatter bottom-left green" style="--rotation: 15deg;"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 CoCo敲一敲藝術教室. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 非 React 腳本 -->
+    <script src="script.js"></script>
+</body>
+</html>
+```
