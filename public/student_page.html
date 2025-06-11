@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>我的學習空間 | CoCo敲一敲藝術教室</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --brown-900: #3E2723;
+            --brown-700: #5D4037;
+            --brown-500: #8D6E63;
+            --brown-300: #BCAAA4;
+            --brown-100: #EFEBE9;
+            --card-bg: rgba(255,250,244,0.88);
+            --glass-blur: 14px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin-top: 27px;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            min-height: 100vh;
+            color: var(--brown-700);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 400px 16px 200px;
+            background: #FFFDF9 url('/login_icons/student_page_background.jpg') no-repeat center/cover;
+        }
+
+        .wrapper {
+            width: 120%;
+            max-width: 1500px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 48px;
+            padding: 56px 32px;
+            backdrop-filter: blur(calc(var(--glass-blur) * .6));
+        }
+
+        @media(max-width:900px) {
+            .wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 28px;
+            box-shadow: 0 12px 32px rgba(0,0,0,.12);
+            padding: 48px 40px;
+            animation: fadeIn .8s ease-out both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--brown-900);
+            text-align: center;
+            letter-spacing: 1px;
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .avatar-box {
+            text-align: center;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--brown-300);
+            background: #fff;
+            transition: .4s;
+        }
+
+            .avatar:hover {
+                transform: scale(1.04) rotate(-1deg);
+            }
+
+        .change-btn {
+            margin-top: 20px;
+            padding: 10px 26px;
+            background: var(--brown-500);
+            color: #fff;
+            border: none;
+            border-radius: 22px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: .3s;
+            font-weight: 500;
+        }
+
+            .change-btn:hover {
+                background: var(--brown-700);
+            }
+
+        .profile-info {
+            margin-top: 40px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+            .profile-info b {
+                display: inline-block;
+                min-width: 80px;
+                color: var(--brown-900);
+            }
+
+        .tabs {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 38px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 22px;
+            background: var(--brown-100);
+            color: var(--brown-700);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: .25s;
+            font-weight: 500;
+        }
+
+            .tab-btn:hover:not(.active) {
+                background: var(--brown-300);
+                color: var(--brown-900);
+            }
+
+            .tab-btn.active {
+                background: var(--brown-500);
+                color: #fff;
+            }
+
+        .tab-content {
+            display: none;
+        }
+
+            .tab-content.active {
+                display: block;
+                animation: fadeIn .5s both;
+            }
+
+        .upload-area {
+            border: 2.5px dashed var(--brown-300);
+            border-radius: 16px;
+            padding: 40px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: .3s;
+            font-size: 1.1rem;
+            color: var(--brown-700);
+            display: block;
+            width: 100%;
+            margin-bottom: 32px;
+        }
+
+            .upload-area:hover {
+                border-color: var(--brown-500);
+                background: var(--brown-100);
+            }
+
+            .upload-area input {
+                display: none;
+            }
+
+        .art-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+
+        .art-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .art-item img {
+                width: 100%;
+                height: auto;
+                border-radius: 14px;
+                box-shadow: 0 6px 16px rgba(0,0,0,.1);
+                transition: .35s;
+            }
+
+                .art-item img:hover {
+                    transform: scale(1.07) rotate(.8deg);
+                }
+
+        .download-btn {
+            margin-top: 12px;
+            padding: 6px 20px;
+            background: transparent;
+            color: var(--brown-500);
+            border: none;
+            border-radius: 18px;
+            border-color: var(--brown-500);
+            font-size: .9rem;
+            cursor: pointer;
+            transition: .3s;
+            font-weight: 500;
+        }
+
+            .download-btn:hover {
+                background: #8D6E63;
+                color: #fff;
+            }
+
+        .simple-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 520px;
+        }
+
+            .simple-form label {
+                font-size: .95rem;
+                font-weight: 500;
+                color: var(--brown-900);
+            }
+
+            .simple-form input, .simple-form textarea, .simple-form select {
+                font-family: inherit;
+                font-size: 1rem;
+                padding: 14px 16px;
+                border: 1.8px solid var(--brown-300);
+                border-radius: 12px;
+                background: #fff;
+                transition: .25s;
+            }
+
+                .simple-form input:focus, .simple-form textarea:focus, .simple-form select:focus {
+                    outline: none;
+                    border-color: var(--brown-500);
+                    box-shadow: 0 0 0 2px rgba(141,110,99,.2);
+                }
+
+            .simple-form button {
+                align-self: flex-start;
+                padding: 14px 36px;
+                border: none;
+                border-radius: 22px;
+                background: var(--brown-500);
+                color: #fff;
+                cursor: pointer;
+                font-size: 1rem;
+                font-weight: 600;
+                transition: .3s;
+            }
+
+                .simple-form button:hover {
+                    background: var(--brown-700);
+                }
+    </style>
+</head>
+
+<body>
+    <h1>學生操作專區</h1>
+
+    <main class="wrapper">
+        <aside class="card">
+            <div class="avatar-box">
+                <img id="avatar" src="/login_icons/pofile_pic.jpg" alt="頭像" class="avatar">
+                <input type="file" id="avatarInput" accept="image/*" hidden>
+                <button class="change-btn" onclick="avatarInput.click()">更換頭像</button>
+            </div>
+            <div class="profile-info">
+                <p><b>姓名</b>高疑閑</p>
+                <p><b>班級</b>幼兒園 - 星期三 9:00-21:00</p>
+                <p><b>家長姓名</b>高老頭</p>
+                <p><b>電話</b>0937-626-368</p>
+                <p><b>住址</b>高雄市燕巢區深中路62號</p>
+                <p><b>Email</b>student@example.com</p>
+            </div>
+        </aside>
+
+        <section class="card">
+            <nav class="tabs">
+                <button class="tab-btn active" data-tab="archive">作品 Archive</button>
+                <button class="tab-btn" data-tab="leave">請假 / 補課</button>
+            </nav>
+
+            <div id="archive" class="tab-content active">
+                <label class="upload-area">
+                    <input type="file" id="artUpload" accept="image/*" multiple>
+                    ➕ 點我上傳作品
+                </label>
+                <div id="artGrid" class="art-grid">
+                    <div class="art-item">
+                        <img src="/login_icons/painting1.jpg" alt="painting1">
+                        <a class="download-btn" href="/login_icons/painting1.jpg" download>下載作品</a>
+                    </div>
+                    <div class="art-item">
+                        <img src="/login_icons/painting2.jpg" alt="painting2">
+                        <a class="download-btn" href="/login_icons/painting2.jpg" download>下載作品</a>
+                    </div>
+                    <div class="art-item">
+                        <img src="/login_icons/painting3.jpg" alt="painting3">
+                        <a class="download-btn" href="/login_icons/painting3.jpg" download>下載作品</a>
+                    </div>
+                    <div class="art-item">
+                        <img src="/login_icons/painting4.jpg" alt="painting4">
+                        <a class="download-btn" href="/login_icons/painting4.jpg" download>下載作品</a>
+                    </div>
+                    <div class="art-item">
+                        <img src="/login_icons/painting5.jpg" alt="painting5">
+                        <a class="download-btn" href="/login_icons/painting5.jpg" download>下載作品</a>
+                    </div>
+                    <div class="art-item">
+                        <img src="/login_icons/painting6.jpg" alt="painting6">
+                        <a class="download-btn" href="/login_icons/painting6.jpg" download>下載作品</a>
+                    </div>
+                    <div class="art-item">
+                        <img src="/login_icons/painting7.jpg" alt="painting7">
+                        <a class="download-btn" href="/login_icons/painting7.jpg" download>下載作品</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="leave" class="tab-content">
+                <form id="leaveForm" class="simple-form" onsubmit="submitLeave(event)">
+                    <label>
+                        日期
+                        <input type="date" id="leaveDate" required>
+                    </label>
+                    <label>
+                        類型
+                        <select id="leaveType" required>
+                            <option value="leave">請假</option>
+                            <option value="makeup">申請補課</option>
+                        </select>
+                    </label>
+                    <label>
+                        說明
+                        <textarea id="leaveMsg" rows="4" placeholder="原因或希望補課時段…"></textarea>
+                    </label>
+                    <button type="submit">送出申請</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const avatarInput = document.getElementById('avatarInput');
+        avatarInput.addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (file) { document.getElementById('avatar').src = URL.createObjectURL(file); }
+        });
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const id = btn.dataset.tab;
+                document.querySelectorAll('.tab-content').forEach(c => {
+                    c.classList.toggle('active', c.id === id);
+                });
+            });
+        });
+
+        const artUpload = document.getElementById('artUpload');
+        const artGrid = document.getElementById('artGrid');
+        artUpload.addEventListener('change', e => {
+            [...e.target.files].forEach(f => {
+                const url = URL.createObjectURL(f);
+                const item = document.createElement('div');
+                item.classList.add('art-item');
+                const img = document.createElement('img');
+                img.src = url; img.alt = f.name;
+                const link = document.createElement('a');
+                link.href = url; link.download = f.name;
+                link.textContent = '下載作品';
+                link.className = 'download-btn';
+                item.appendChild(img);
+                item.appendChild(link);
+                artGrid.appendChild(item);
+            });
+            artUpload.value = '';
+        });
+
+        function submitLeave(e) {
+            e.preventDefault();
+            const date = document.getElementById('leaveDate').value;
+            const type = document.getElementById('leaveType').value;
+            const msg = document.getElementById('leaveMsg').value.trim();
+            const humanType = type === 'leave' ? '請假' : '補課';
+            const fullMsg = `[學生系統] ${humanType}｜日期:${date}｜備註:${msg || '無'}`;
+            sendSMS('0937626368', fullMsg);
+            alert('已送出！老師會盡快與你聯絡 😊');
+            e.target.reset();
+        }
+        function sendSMS(phone, text) {
+            console.log('Sending SMS to', phone, '\n', text);
+        }
+    </script>
+</body>
+</html>

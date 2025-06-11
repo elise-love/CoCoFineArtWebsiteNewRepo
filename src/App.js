@@ -1,4 +1,5 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+﻿//App.js
+document.addEventListener("DOMContentLoaded", () => {
     // Intro Animation
     const introAnimation = document.getElementById("intro-animation")
     const introText = document.getElementById("intro-text")

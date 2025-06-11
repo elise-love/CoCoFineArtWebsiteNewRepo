@@ -1,4 +1,4 @@
-﻿/* Base Styles */
+﻿/* style.css */
 :root {
     --background: #ece6df;
     --foreground: #3d3629;
@@ -225,60 +225,132 @@ img {
     margin-top: 2rem;
 }
 
-/* Studio Gallery */
-.gallery-container {
+/* Studio Gallery 捲簾效果 */
+.gallery-item {
     position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    overflow: hidden;
+    border-radius: var(--radius);
 }
 
-.gallery-scroll {/*the filmstrio to scroll though*/
-    display: flex; /*line up .galeery-item horizontally*/
-    overflow-x: auto; /*allow horizontal scroll*/
-    scroll-behavior: smooth;/*smooth srcolling*/
-    gap: 2rem;
-    padding: 1rem 0;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-}
-
-    .gallery-scroll::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
+    .gallery-item .overlay {
+        position: absolute;
+        bottom: -100%; /* 初始由下方隱藏 */
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(61, 54, 41, 0.7); /* 半透明背景 */
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: bottom 0.3s ease;
+        padding: 1rem;
+        text-align: center;
+        border-radius: var(--radius);
     }
 
-.gallery-item { /*prvents each item from shrinking or growing in the flex layout*/
+    .gallery-item:hover .overlay {
+        bottom: 0; /* Hover 時從下方滑入 */
+    }
+
+    .gallery-item .overlay p {
+        margin: 0.2rem 0;
+        font-size: 0.9rem;
+    }
+
+/* Auto-scrolling horizontal gallery 修正版 */
+.auto-scroll {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    gap: 2rem;
+    animation: scroll-left 60s linear infinite;
+}
+
+    .auto-scroll:hover {
+        animation-play-state: paused; /* 滑鼠停留時暫停動畫 */
+    }
+
+    .auto-scroll .gallery-item {
+        flex: 0 0 auto;
+        width: 300px;
+        height: 400px;
+        overflow: hidden;
+        border-radius: var(--radius);
+    }
+
+        .auto-scroll .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .auto-scroll::after {
+        content: attr(data-dup);
+        display: flex;
+        gap: 2rem;
+    }
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.auto-scroll::after {
+    animation: inherit;
+}
+
+.auto-scroll:hover,
+.auto-scroll:hover::after {
+    animation-play-state: paused;
+}
+
+
+/* Auto-scrolling horizontal gallery */
+.auto-scroll {
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    animation: scroll-left 30s linear infinite; /* Adjust duration for speed */
+}
+
+    .auto-scroll:hover {
+        animation-play-state: paused; /* Pause on hover */
+    }
+
+/* Seamless looping */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%); /* Move full width of original content */
+    }
+}
+
+/* Duplicate content for seamless looping */
+.auto-scroll::after {
+    content: "";
+    display: flex;
+    gap: 2rem;
+    white-space: nowrap;
     flex: 0 0 auto;
 }
 
-.gallery-nav {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: white;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--primary);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+.auto-scroll > .gallery-item {
+    animation: inherit; /* Inherit animation from parent */
 }
 
-    .gallery-nav:hover {
-        background-color: var(--primary);
-        color: white;
-    }
-
-    .gallery-nav.prev {
-        left: 0;
-    }
-
-    .gallery-nav.next {
-        right: 0;
-    }
-
+.auto-scroll::after > .gallery-item {
+    animation: inherit; /* Inherit animation from parent */
+}
 /* Artwork Display */
 .artwork-grid {
     /* 1. CSS Grid：每個卡片最少 300px，最多攤滿格子 */
@@ -502,6 +574,19 @@ img {
         border-bottom: 2px solid rgba(138, 102, 66, 0.3);
         border-bottom-right-radius: 0.5rem;
     }
+
+    .social-link {
+        display: inline-block; /* 讓 <a> 包覆圖示時能設定寬高、行內排列 */
+        margin-right: 1rem;
+        font-size: 1.5rem; /* 決定 icon 大小：1.5 倍的根字型 */
+        color: var(--foreground); /* 用你在 :root 定義的字色 */
+        transition: color 0.2s; /* hover 時顏色變化的過渡動畫 */
+    }
+
+        /* 滑鼠經過時變色 */
+        .social-link:hover {
+            color: var(--accent); /* 用你定義的強調色 */
+        }
 
 /* Contact Section */
 .contact-grid {
@@ -751,3 +836,79 @@ img {
         padding: 6rem 0;
     }
 }
+
+/* ─── Auto-scrolling horizontal gallery ─── */
+/* ─── Auto-scrolling horizontal gallery ─── */
+.auto-scroll {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    gap: 2rem;
+    animation: scroll-left 60s linear infinite; /* 調整動畫時間讓右邊更多，自己可改秒數 */
+}
+
+    .auto-scroll:hover {
+        animation-play-state: paused; /* 滑鼠停留時暫停動畫 */
+    }
+
+    /* 讓所有 .gallery-item 的寬度一致，確保不會被壓縮 */
+    .auto-scroll .gallery-item {
+        flex: 0 0 auto;
+        width: 300px; /* 圖片容器寬度 */
+        height: 400px;
+        overflow: hidden;
+        border-radius: var(--radius);
+    }
+
+        .auto-scroll .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    /* 讓 ::after 自動接續相同內容，達成無限滾動效果 */
+    .auto-scroll::after {
+        content: "";
+        display: flex;
+        gap: 2rem;
+    }
+
+        .auto-scroll::after > * {
+            flex: 0 0 auto;
+            width: 300px;
+            height: 400px;
+        }
+
+    .auto-scroll::after {
+        animation: inherit; /* 使用相同動畫 */
+    }
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%); /* 位移一半，讓畫廊右側更多內容可見 */
+    }
+}
+
+
+/* 關鍵：把整條 row 再複製一次接在後面，就能無縫循環 */
+.auto-scroll {
+    display: flex;
+}
+
+    .auto-scroll::after {
+        content: attr(data-dup); /* 留空即可，只是為了生成虛擬元素 */
+    }
+
+    .auto-scroll,
+    .auto-scroll::after {
+        animation: scroll-left 20s linear infinite;
+    }
+
+        .auto-scroll:hover,
+        .auto-scroll:hover::after {
+            animation-play-state: paused; /* 滑鼠停留時暫停，方便觀看 */
+        }

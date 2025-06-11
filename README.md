@@ -6,7 +6,9 @@ who is the owner of CoCo Fine Art wrokspace.
 He is a great art teacher but a dummy when it comes to tech-related stuff.
 So I hope I can build it as intuituve as sth even the amoebasssss can work on. 
 
-##Project Structure
+如果做得夠好，希望可以在 5/18送給他當生日禮物。
+
+##Project Structure 
 
 CoCoFineArtWebsite/
 ├── frontend/
